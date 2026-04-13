@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NimbleBlocks.Resources"
+             x:Class="NimbleBlocks.GamePage"
+             Title="Blox Game"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <!-- Custom Transparent Header -->
+        <Frame BackgroundColor="Transparent" 
+               HasShadow="False" 
+               Padding="20,10" 
+               CornerRadius="0"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Back Button -->
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#FF4500" 
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Clicked="OnMenuClicked"/>
+
+                <!-- Small Logo -->
+                <resources:Logo Grid.Column="1" 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Center"
+                                WidthRequest="30" 
+                                HeightRequest="30"/>
+
+                <!-- Settings Button -->
+                <Button Grid.Column="2" 
+                        x:Name="HeaderSettingsButton"
+                        Text="⚙️" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#FF4500" 
+                        FontSize="24"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Clicked="OnSettingsClicked"/>
+            </Grid>
+        </Frame>
+
+        <!-- Neon Glow Background -->
+        <Grid x:Name="BackgroundGrid">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FF7800" Offset="0"/>
+                    <GradientStop Color="#000000" Offset="0.02"/>
+                    <GradientStop Color="#2D2B2B" Offset="0.98"/>
+                    <GradientStop Color="#FF7800" Offset="6"/>
+
+                </LinearGradientBrush>
+            </Grid.Background>
+
+
+            <!-- Neon Glowing Stars for Animation -->
+            <Label x:Name="Star1" Text="." FontSize="22" TextColor="#FF4500" Opacity="0.6" 
+                   HorizontalOptions="Start" VerticalOptions="Start" Margin="50,100,0,0"/>
+            <Label x:Name="Star2" Text="." FontSize="20" TextColor="#FF6B35" Opacity="0.7" 
+                   HorizontalOptions="End" VerticalOptions="Start" Margin="0,80,60,0"/>
+            <Label x:Name="Star3" Text="." FontSize="18" TextColor="#FF4500" Opacity="0.5" 
+                   HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"/>
+            <Label x:Name="Star4" Text="." FontSize="24" TextColor="#FF6B35" Opacity="0.6" 
+                   HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,40,0"/>
+            <Label x:Name="Star5" Text="." FontSize="21" TextColor="#FF4500" Opacity="0.7" 
+                   HorizontalOptions="Start" VerticalOptions="End" Margin="60,0,0,120"/>
+            <Label x:Name="Star6" Text="." FontSize="19" TextColor="#FF6B35" Opacity="0.5" 
+                   HorizontalOptions="End" VerticalOptions="End" Margin="0,0,50,100"/>
+            <Label x:Name="Star7" Text="." FontSize="23" TextColor="#FF4500" Opacity="0.6" 
+                   HorizontalOptions="Center" VerticalOptions="Start" Margin="0,60,0,0"/>
+            <Label x:Name="Star8" Text="." FontSize="17" TextColor="#FF6B35" Opacity="0.7" 
+                   HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,80"/>
+
+            <!-- Main content -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <!-- Header -->
+                    <RowDefinition Height="*"/>
+                    <!-- Game area -->
+                    <RowDefinition Height="150"/>
+                    <!-- Footer -->
+                </Grid.RowDefinitions>
+
+                <!-- Neon Header Bar with Glow Effect -->
+                <Frame Grid.Row="0" BackgroundColor="Transparent" HasShadow="True" Margin="0,15,0,0" Padding="20,20" CornerRadius="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Left side - Player 1 Info with Neon Glow -->
+                        <StackLayout Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start" Spacing="8" VerticalOptions="Center">
+                            <Label x:Name="Player1AvatarLabel" Text="🤴" FontSize="28" TextColor="#FF4500" VerticalOptions="Center"/>
+                            <Label x:Name="Player1NameLabel" Text="Player 1" FontSize="14" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                            <Label Text="🏆" FontSize="18" TextColor="#FF6B35" VerticalOptions="Center"/>
+                            <Label x:Name="Player1WinsLabel" Text="0" FontSize="16" FontAttributes="Bold" TextColor="#FF4500" VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Center - Neon Difficulty -->
+                        <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center" Spacing="8" VerticalOptions="Center">
+                            <Label x:Name="DifficultyLabel" Text="EASY" 
+                               FontSize="18" FontAttributes="Bold" 
+                               TextColor="#FF4500" VerticalOptions="Center"/>
+                        </StackLayout>
+
+                        <!-- Right side - AI/Player 2 Info with Neon Glow -->
+                        <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="End" Spacing="8" VerticalOptions="Center">
+                            <Label x:Name="Player2WinsLabel" Text="0" FontSize="16" FontAttributes="Bold" TextColor="#FF4500" VerticalOptions="Center"/>
+                            <Label Text="🏆" FontSize="18" TextColor="#FF6B35" VerticalOptions="Center"/>
+                            <Label x:Name="Player2NameLabel" Text="AI" FontSize="14" FontAttributes="Bold" TextColor="White" VerticalOptions="Center"/>
+                            <Label x:Name="Player2AvatarLabel" Text="🤖" FontSize="28" TextColor="#FF4500" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Game Board Area -->
+                <ScrollView Grid.Row="1" Padding="20">
+                    <StackLayout Spacing="1" VerticalOptions="CenterAndExpand">
+
+
+
+                        <!-- Game Instruction with Enhanced Transparency -->
+                        <Label Text="💡 Select blocks to remove them and outsmart your opponent!"
+                   FontSize="14"
+                   TextColor="#FF8C42"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,10"
+                   Opacity="0.7"/>
+
+                        <!-- Neon Timer Section -->
+                        <Frame BackgroundColor="Transparent" Padding="20" CornerRadius="20" HasShadow="True" Opacity="0.95">
+                            <StackLayout Spacing="15" HorizontalOptions="Center">
+                                <!-- Neon Timer Label with Rich Text -->
+                                <Label x:Name="TimeLabel" 
+                                   FontSize="20" 
+                                   FontAttributes="Bold" 
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"/>
+
+                                <!-- Neon Progress Bar -->
+                                <ProgressBar x:Name="TimeProgressBar" 
+                                         Progress="1.0" 
+                                         ProgressColor="#FF4500" 
+                                         BackgroundColor="#333333" 
+                                         HeightRequest="12" 
+                                         WidthRequest="280"
+                                         HorizontalOptions="Center"/>
+
+
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Neon Turn Indicator -->
+                        <Frame BackgroundColor="Transparent" Padding="20" CornerRadius="20" HasShadow="True" Opacity="0.95">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Label x:Name="TurnIndicator" Text="●" 
+                                   TextColor="#FF4500" FontSize="20" VerticalOptions="Center" Margin="0,0,8,0"/>
+                                <Label x:Name="PromptLabel" Text="Your turn!"
+                                   TextColor="#FF7800" HorizontalOptions="Center" FontSize="24"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Game Blocks -->
+                        <StackLayout Spacing="20" HorizontalOptions="Center">
+
+                            <!-- Row 1 (3 blocks) with Gradient Squares -->
+                            <StackLayout x:Name="Row1" Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                                <Button x:Name="Block1_1" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block1_2" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block1_3" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                            </StackLayout>
+
+                            <!-- Row 2 (4 blocks) with Gradient Squares -->
+                            <StackLayout x:Name="Row2" Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                                <Button x:Name="Block2_1" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block2_2" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block2_3" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block2_4" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                            </StackLayout>
+
+                            <!-- Row 3 (5 blocks) with Gradient Squares -->
+                            <StackLayout x:Name="Row3" Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                                <Button x:Name="Block3_1" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block3_2" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block3_3" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block3_4" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                                <Button x:Name="Block3_5" Text="■" BackgroundColor="#FF4500" TextColor="White" 
+                                    FontSize="20" CornerRadius="8" WidthRequest="60" HeightRequest="60"
+                                    Clicked="OnBlockClicked"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                        <!-- Neon Selection Controls -->
+                        <Frame x:Name="SelectionControlsFrame" 
+                           BackgroundColor="Transparent" 
+                           Padding="20" 
+                           CornerRadius="20" 
+                           HasShadow="True" 
+                           Opacity="0.95"
+                           IsVisible="False"
+                           Margin="0,25,0,0">
+                            <StackLayout Spacing="18" HorizontalOptions="Center">
+                                <!-- Neon Selection Info -->
+                                <Label x:Name="SelectionInfoLabel" 
+                                   Text="Select blocks to remove from any row" 
+                                   FontSize="16" 
+                                   TextColor="#FF4500" 
+                                   HorizontalTextAlignment="Center"/>
+
+                                <!-- Neon Action Buttons -->
+                                <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                                    <!-- Neon Remove Selected Button -->
+                                    <Button x:Name="RemoveSelectedButton" 
+                                        Text="🗑️" 
+                                        BackgroundColor="#FF4500" 
+                                        TextColor="White" 
+                                        FontSize="18" 
+                                        FontAttributes="Bold"
+                                        CornerRadius="25"
+                                        Padding="30,15"
+                                        Clicked="OnRemoveSelectedClicked"
+                                        HorizontalOptions="Center"/>
+
+                                    <!-- Neon Clear Selection Button -->
+                                    <Button x:Name="ClearSelectionButton" 
+                                        Text="✖️ Clear" 
+                            BackgroundColor="Transparent" 
+                                        TextColor="#FF6B35" 
+                                        FontSize="18" 
+                            FontAttributes="Bold"
+                            BorderWidth="2"
+                                        CornerRadius="25" 
+                                        Padding="30,15"
+                                        Clicked="OnClearSelectionClicked"
+                                        HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+
+                    </StackLayout>
+                </ScrollView>
+
+                <!-- Neon Bottom Navigation Bar -->
+                <Frame Grid.Row="2" BackgroundColor="Transparent" HasShadow="True" Padding="20,15" CornerRadius="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Neon Home Button -->
+                        <Button Grid.Column="0" 
+                            x:Name="HomeButton" 
+                            Text="🏠" 
+                            BackgroundColor="Transparent" 
+                            TextColor="#FF4500" 
+                            FontSize="28"
+                            CornerRadius="30"
+                            WidthRequest="60"
+                            HeightRequest="60"
+                            Clicked="OnMenuClicked"
+                            HorizontalOptions="Center"/>
+
+                        <!-- Neon Reset Scores Button -->
+                        <Button Grid.Column="1" 
+                            x:Name="ResetScoresButton" 
+                            Text="🔄" 
+                            BackgroundColor="Transparent" 
+                            TextColor="#FF6B35" 
+                            FontSize="28"
+                            CornerRadius="30"
+                            WidthRequest="60"
+                            HeightRequest="60"
+                            Clicked="OnResetScoresClicked"
+                            HorizontalOptions="Center"/>
+
+                        <!-- Neon Settings Button -->
+                        <Button Grid.Column="2" 
+                            x:Name="SettingsButton" 
+                            Text="⚙️" 
+                            BackgroundColor="Transparent" 
+                            TextColor="#FF6B35" 
+                            FontSize="28"
+                            CornerRadius="30"
+                            WidthRequest="60"
+                            HeightRequest="60"
+                            Clicked="OnSettingsClicked"
+                            HorizontalOptions="Center"/>
+                    </Grid>
+                </Frame>
+            </Grid>
+
+            <!-- Time's Up Background Overlay - Semi-transparent blur effect -->
+            <Grid x:Name="TimesUpBackgroundOverlay" 
+              IsVisible="False" 
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand">
+                <BoxView BackgroundColor="#80000000" 
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCloseGameOverModal"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+            </Grid>
+
+            <!-- Neon Time's Up Dialog Overlay -->
+            <Grid x:Name="TimesUpOverlay" 
+              IsVisible="False" 
+              BackgroundColor="Transparent" 
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand">
+                <Frame BackgroundColor="#111010"
+                      BorderColor="#FF8C42"
+
+                       CornerRadius="25" 
+                   HasShadow="True" 
+                       Padding="30" 
+                   Margin="30" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                       WidthRequest="300"
+                       HeightRequest="500">
+                    <StackLayout Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+                        <!-- Neon Trophy Icon -->
+                        <Frame BackgroundColor="#FF4500" 
+                           CornerRadius="60" 
+                           WidthRequest="70" 
+                           HeightRequest="70" 
+                           HorizontalOptions="Center" 
+                           Padding="0">
+                            <Label x:Name="TrophyLabel" Text="🏆" 
+                               FontSize="35" 
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center" 
+                               TextColor="White"/>
+                        </Frame>
+
+                        <!-- Neon Title -->
+                        <Label x:Name="TitleLabel" Text="Time's Up!" 
+                           FontSize="26" 
+                           FontAttributes="Bold" 
+                           TextColor="#FF4500" 
+                           HorizontalTextAlignment="Center"
+                           Margin="0,15,0,8"/>
+
+                        <!-- Neon Description -->
+                        <Label x:Name="MessageLabel" Text="The timer ran out. No winner this round!" 
+                           FontSize="16" 
+                           TextColor="#ffff" 
+                           HorizontalTextAlignment="Center"
+                           Margin="0,0,0,15"/>
+
+                        <!-- Player Statistics Section -->
+                        <Frame BackgroundColor="#232222" 
+                           CornerRadius="15" 
+                           Padding="15" 
+                           Margin="0,0,0,15"
+                           BorderColor="#FF6B35"
+                           HasShadow="False">
+                            <StackLayout Spacing="10">
+                                <!-- Statistics Title -->
+                                <Label Text="📊 Statistics" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#FF6B35" 
+                                   HorizontalTextAlignment="Center"
+                                   Margin="0,0,0,8"/>
+
+                                <!-- Player 1 Stats -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label x:Name="StatsPlayer1Avatar" 
+                                       Text="🤴" 
+                                       FontSize="20" 
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"/>
+                                    <Label x:Name="StatsPlayer1Name" 
+                                       Text="Player 1" 
+                                       FontSize="14" 
+                                       TextColor="White" 
+                                       Grid.Column="1"
+                                       Margin="10,0,0,0"
+                                       VerticalOptions="Center"/>
+                                    <Label x:Name="StatsPlayer1Wins" 
+                                       Text="0 wins" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#FF4500" 
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"/>
+                                </Grid>
+
+                                <!-- Player 2 Stats -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label x:Name="StatsPlayer2Avatar" 
+                                       Text="🤖" 
+                                       FontSize="20" 
+                                       Grid.Column="0"
+                                       VerticalOptions="Center"/>
+                                    <Label x:Name="StatsPlayer2Name" 
+                                       Text="AI" 
+                                       FontSize="14" 
+                                       TextColor="White" 
+                                       Grid.Column="1"
+                                       Margin="10,0,0,0"
+                                       VerticalOptions="Center"/>
+                                    <Label x:Name="StatsPlayer2Wins" 
+                                       Text="0 wins" 
+                                       FontSize="14" 
+                                       FontAttributes="Bold" 
+                                       TextColor="#FF4500" 
+                                       Grid.Column="2"
+                                       VerticalOptions="Center"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- Neon Action Buttons -->
+                        <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="Center">
+                            <!-- Neon Play Again Button -->
+                            <Button x:Name="PlayAgainButton" 
+                                Text="🔄 Play Again" 
+                                BackgroundColor="#FF4500" 
+                                TextColor="White" 
+                                FontSize="16" 
+                                FontAttributes="Bold"
+                                CornerRadius="25"
+                                Padding="0,15"
+                                WidthRequest="120"
+                                HeightRequest="60"
+                                Clicked="OnPlayAgainClicked"/>
+
+                            <!-- Neon Home Button -->
+                            <Button x:Name="HomeDialogButton" 
+                                Text="🏠" 
+                                BackgroundColor="Transparent" 
+                                TextColor="#FF6B35" 
+                                FontSize="20"
+                                BorderWidth="2"
+                                CornerRadius="60"
+                                WidthRequest="60" 
+                                HeightRequest="60"
+                                Clicked="OnHomeDialogClicked"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+
+        <!-- Audio Settings Modal Dialog -->
+        <Grid x:Name="AudioSettingsModal"
+              IsVisible="False"
+              BackgroundColor="Transparent"
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand">
+
+            <!-- Semi-transparent background overlay - tap to close -->
+            <BoxView BackgroundColor="#80000000" 
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCloseAudioSettingsClicked"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <!-- Modal dialog content -->
+            <Frame BackgroundColor="#111010"
+                   BorderColor="#FF8C42"
+                   CornerRadius="25" 
+                   HasShadow="True" 
+                   Padding="30" 
+                   Margin="40" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   HeightRequest="350">
+                <StackLayout Spacing="20">
+                    <Label Text="🔊 Audio Settings"
+                           TextColor="#FF4500"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Sound Effects Slider -->
+                    <StackLayout Spacing="12">
+                        <Label Text="🔊 Sound Effects"
+                               TextColor="#FF8C42"
+                               FontSize="16"/>
+                        <Slider x:Name="SoundSlider"
+                                Minimum="0"
+                                Maximum="1"
+                                Value="0.8"
+                                ThumbColor="#FF4500"
+                                MinimumTrackColor="#FF4500"
+                                MaximumTrackColor="#333333"/>
+                        <Label x:Name="SoundValueLabel"
+                               Text="80%"
+                               TextColor="#FF6B35"
+                               FontSize="14"
+                               HorizontalOptions="End"/>
+                    </StackLayout>
+
+                    <!-- Music Slider -->
+                    <StackLayout Spacing="12">
+                        <Label Text="🎵 Music"
+                               TextColor="#FF8C42"
+                               FontSize="16"/>
+                        <Slider x:Name="MusicSlider"
+                                Minimum="0"
+                                Maximum="1"
+                                Value="0.6"
+                                ThumbColor="#FF4500"
+                                MinimumTrackColor="#FF4500"
+                                MaximumTrackColor="#333333"/>
+                        <Label x:Name="MusicValueLabel"
+                               Text="60%"
+                               TextColor="#FF6B35"
+                               FontSize="14"
+                               HorizontalOptions="End"/>
+                    </StackLayout>
+
+                    <!-- Close Button -->
+                    <Button Text="✖️ Close"
+                            BackgroundColor="Transparent"
+                            TextColor="#FF6B35"
+                            FontSize="16"
+                            CornerRadius="20"
+                            HeightRequest="50"
+                            BorderWidth="2"
+                            Margin="0,20,0,0"
+                            Clicked="OnCloseAudioSettingsClicked"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

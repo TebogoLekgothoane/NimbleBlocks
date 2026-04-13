@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NimbleBlocks.Resources"
+             x:Class="NimbleBlocks.MainPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Neon Glow Background -->
+            <Style x:Key="GradientBackground" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF7800" Offset="0"/>
+                            <GradientStop Color="#000000" Offset="0.02"/>
+                            <GradientStop Color="#2D2B2B" Offset="0.98"/>
+                            <GradientStop Color="#FF7800" Offset="6"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Glowing Star Animation Style -->
+            <Style x:Key="StarStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <!-- Neon Title Style with Glow -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="34"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <!-- Neon Subtitle Style -->
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFF"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,10,0,20"/>
+            </Style>
+
+            <!-- Glowing Instruction Style -->
+            <Style x:Key="InstructionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFF"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Margin" Value="0,5,0,5"/>
+            </Style>
+
+            <!-- Neon Score Style -->
+            <Style x:Key="ScoreStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,20,0,10"/>
+            </Style>
+
+            <!-- Neon Primary Button Style -->
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#FF4500"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="Margin" Value="20,15"/>
+            </Style>
+
+            <!-- Neon Secondary Button Style -->
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="20,8"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+
+            <!-- Glowing Frame Style -->
+            <Style x:Key="GlowFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Margin" Value="0,10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Style="{StaticResource GradientBackground}">
+        <!-- Custom Transparent Header -->
+        <Frame BackgroundColor="Transparent" 
+               HasShadow="False" 
+               Padding="20,10" 
+               CornerRadius="0"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo in Header - Far Left -->
+                <StackLayout Grid.Column="0" 
+                             Margin="0,0,0,0"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Start">
+                    <resources:Logo />
+                </StackLayout>
+
+                <!-- Empty middle space -->
+                <Label Grid.Column="1" 
+                       Text="" 
+                       HorizontalOptions="Center"/>
+
+                <!-- Empty space for symmetry -->
+                <Label Grid.Column="2" 
+                       Text="" 
+                       WidthRequest="40"/>
+            </Grid>
+        </Frame>
+
+        <!-- Animated Stars Background -->
+        <Grid>
+            <!-- Star 1 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="Start" 
+                   Margin="50,80,0,0" x:Name="Star1"/>
+            <!-- Star 2 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="Start" 
+                   Margin="0,120,60,0" x:Name="Star2"/>
+            <!-- Star 3 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Center" VerticalOptions="Start" 
+                   Margin="0,200,0,0" x:Name="Star3"/>
+            <!-- Star 4 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="Center" 
+                   Margin="30,0,0,0" x:Name="Star4"/>
+            <!-- Star 5 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="Center" 
+                   Margin="0,0,40,0" x:Name="Star5"/>
+            <!-- Star 6 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                   Margin="80,0,0,100" x:Name="Star6"/>
+            <!-- Star 7 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="End" 
+                   Margin="0,0,50,80" x:Name="Star7"/>
+            <!-- Star 8 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Center" VerticalOptions="End" 
+                   Margin="0,0,0,120" x:Name="Star8"/>
+        </Grid>
+
+        <StackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+
+            <!-- Neon Title Section -->
+            <Frame Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,60,0,10">
+                <StackLayout Spacing="15" HorizontalOptions="Center">
+                    <Label Text="🎮 NimbleBlocks 🎮"
+                               Style="{StaticResource TitleStyle}"
+                               x:Name="TitleLabel" />
+
+                    <Label Text="Strategic Block Removal Game"
+                               Style="{StaticResource SubtitleStyle}" />
+
+                    <!-- Neon Glow Effect -->
+                    <BoxView BackgroundColor="#FF4500" 
+                                 HeightRequest="3" 
+                                 HorizontalOptions="Fill" 
+                                 Margin="10,5,10,0"
+                                 Opacity="0.6"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Neon Instructions Section -->
+            <Frame Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,0,0,10">
+                <StackLayout>
+                    <Label Text="📋 How to Play:"
+                               TextColor="#FF4500"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               Margin="0,0,0,15" />
+
+                    <Label Text="🎯 Take turns removing blocks from rows"
+                               Style="{StaticResource InstructionStyle}" />
+                    <Label Text="🔢 Remove any number from the same row"
+                               Style="{StaticResource InstructionStyle}" />
+                    <Label Text="⏰ Beat the timer to win!"
+                               Style="{StaticResource InstructionStyle}" />
+                    <Label Text="🏆 Player who takes the last block wins!"
+                               Style="{StaticResource InstructionStyle}" />
+
+
+                </StackLayout>
+            </Frame>
+
+
+
+            <!-- Neon Score Section -->
+            <Frame Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,0,0,0">
+                <StackLayout>
+                    <Label x:Name="ScoresLabel" 
+                               Text="0    VS    0"
+                               Style="{StaticResource ScoreStyle}" />
+
+                    <Label Text="Your Wins        Computer Wins"
+                               TextColor="#FF8C42"
+                               FontSize="14"
+                               HorizontalOptions="Center" />
+
+                    <!-- Neon VS Separator -->
+                    <BoxView BackgroundColor="#FF4500" 
+                                 HeightRequest="2" 
+                                 HorizontalOptions="Fill" 
+                                 Margin="20,5,20,0"
+                                 Opacity="0.6"/>
+                </StackLayout>
+            </Frame>
+
+
+            <!-- Action Buttons -->
+            <StackLayout Spacing="10" Margin="0,15,0,20">
+                <Button Text=" Start New Game" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnStartNewGame"
+                            x:Name="StartButton" />
+
+                <Button Text=" Reset Scores" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Clicked="OnResetScores"
+                            x:Name="ResetButton" />
+
+
+            </StackLayout>
+
+
+        </StackLayout>
+
+        <!-- Audio Settings Modal Dialog -->
+        <Grid x:Name="AudioSettingsModal"
+              IsVisible="False"
+               BackgroundColor="Transparent"
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand">
+
+            <!-- Semi-transparent background overlay - tap to close -->
+            <BoxView BackgroundColor="#80000000" 
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCloseAudioSettingsClicked"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+            <!-- Modal dialog content -->
+            <Frame BackgroundColor="#121111"
+                   BorderColor="#FF8C42"
+                   CornerRadius="25" 
+               HasShadow="True"
+                   Padding="30" 
+                   Margin="40" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   HeightRequest="350">
+                <StackLayout Spacing="20">
+                    <Label Text="🔊 Audio Settings"
+                       TextColor="#FF4500"
+                           FontSize="24"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Sound Effects Slider -->
+                    <StackLayout Spacing="12">
+                        <Label Text="🔊 Sound Effects"
+                           TextColor="#FF8C42"
+                           FontSize="16"/>
+                        <Slider x:Name="SoundSlider"
+                            Minimum="0"
+                            Maximum="1"
+                            Value="0.8"
+                            ThumbColor="#FF4500"
+                            MinimumTrackColor="#FF4500"
+                            MaximumTrackColor="#333333"/>
+                        <Label x:Name="SoundValueLabel"
+                           Text="80%"
+                           TextColor="#FF6B35"
+                           FontSize="14"
+                           HorizontalOptions="End"/>
+                    </StackLayout>
+
+                    <!-- Music Slider -->
+                    <StackLayout Spacing="12">
+                        <Label Text="🎵 Music"
+                           TextColor="#FF8C42"
+                           FontSize="16"/>
+                        <Slider x:Name="MusicSlider"
+                            Minimum="0"
+                            Maximum="1"
+                            Value="0.6"
+                            ThumbColor="#FF4500"
+                            MinimumTrackColor="#FF4500"
+                            MaximumTrackColor="#333333"/>
+                        <Label x:Name="MusicValueLabel"
+                           Text="60%"
+                           TextColor="#FF6B35"
+                           FontSize="14"
+                           HorizontalOptions="End"/>
+                    </StackLayout>
+
+                    <!-- Close Button -->
+                    <Button Text="✖️ Close"
+                        BackgroundColor="Transparent"
+                        TextColor="#FF6B35"
+                        FontSize="16"
+                        CornerRadius="20"
+                        HeightRequest="50"
+                        BorderWidth="2"
+                            Margin="0,20,0,0"
+                            Clicked="OnCloseAudioSettingsClicked"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+
+        <!-- Neon Settings Menu Button -->
+        <Button x:Name="SettingsMenuButton"
+                Text="⚙️"
+                FontSize="28"
+                TextColor="#FF4500"
+                BackgroundColor="Transparent"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Margin="0,30,20,0"
+                WidthRequest="60"
+                HeightRequest="60"
+                Clicked="OnSettingsMenuClicked"/>
+
+    </Grid>
+</ContentPage>
+

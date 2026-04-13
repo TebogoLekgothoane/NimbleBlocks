@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NimbleBlocks.Resources"
+             x:Class="NimbleBlocks.AvatarSelectionPage"
+             Title="Choose Characters"
+             BackgroundColor="Transparent"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Neon Glow Background -->
+            <Style x:Key="GradientBackground" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF7800" Offset="0"/>
+                            <GradientStop Color="#000000" Offset="0.02"/>
+                            <GradientStop Color="#2D2B2B" Offset="0.98"/>
+                            <GradientStop Color="#FF7800" Offset="6"/>
+
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- Neon Star Animation Style -->
+            <Style x:Key="StarStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <!-- Neon Title Style -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,20,0,15"/>
+            </Style>
+            
+            <!-- Neon Subtitle Style -->
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF6B35"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,35"/>
+            </Style>
+            
+            <!-- Neon Character Button Style -->
+            <Style x:Key="CharacterButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="CornerRadius" Value="60"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+            
+            <!-- Neon Selected Character Button Style -->
+            <Style x:Key="SelectedCharacterButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="#FF4500"/>
+
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="38"/>
+                <Setter Property="CornerRadius" Value="60"/>
+                <Setter Property="WidthRequest" Value="70"/>
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            
+            <!-- Neon Name Entry Style -->
+            <Style x:Key="NameEntryStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="PlaceholderColor" Value="#FF6B35"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="Margin" Value="20,8"/>
+                <Setter Property="Placeholder" Value="Enter name..."/>
+            </Style>
+            
+            <!-- Neon Start Game Button Style -->
+            <Style x:Key="StartGameButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#FF4500"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="Margin" Value="20,15"/>
+            </Style>
+            
+            <!-- Neon Back Button Style -->
+            <Style x:Key="BackButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#FF6B35"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="20,25"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+            
+            <!-- Neon Frame Style -->
+            <Style x:Key="GlowFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Margin" Value="0,10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Style="{StaticResource GradientBackground}">
+        <!-- Custom Transparent Header -->
+        <Frame BackgroundColor="Transparent" 
+               HasShadow="False" 
+               Padding="20,10" 
+               CornerRadius="0"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill">
+        <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Back Button -->
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#FF4500" 
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Clicked="OnBackClicked"/>
+                
+                <!-- Empty space where logo was -->
+                <Label Grid.Column="1" 
+                       Text="" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                
+                <!-- Empty space for symmetry -->
+                <Label Grid.Column="2" 
+                       Text="" 
+                       WidthRequest="40"/>
+        </Grid>
+        </Frame>
+        
+        <ScrollView>
+            <StackLayout Padding="3" Spacing="0" VerticalOptions="Center">
+                
+                <!-- Logo Section -->
+                <StackLayout HorizontalOptions="Center" Margin="0,30,0,20">
+                    <resources:Logo />
+                </StackLayout>
+                
+                <!-- Neon Header Section -->
+                <Frame Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,10,0,20">
+                    <StackLayout>
+                        <Label Text="🎭 Choose Characters"
+                               TextColor="#FF4500"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               Margin="0,15,0,8" />
+
+                        <Label Text="Select characters for both players"
+                               TextColor="#FFFF"
+                               FontSize="16"
+                               HorizontalOptions="Center" />
+                        
+                      
+                    </StackLayout>
+                </Frame>
+
+                <!-- Neon Player 1 Selection -->
+                <Frame Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,5,0,15">
+                    <StackLayout>
+                        <Label Text="👤 Player 1"
+                               TextColor="#FF4500"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,15" />
+                        
+                        <!-- Neon Player 1 Character Selection -->
+                        <ScrollView Orientation="Horizontal" HeightRequest="90">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Button Text="🤴" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar1"/>
+                                <Button Text="👸" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar2"/>
+                                <Button Text="🦸" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar3"/>
+                                <Button Text="🦹" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar4"/>
+                                <Button Text="🧙" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar5"/>
+                                <Button Text="🧚" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar6"/>
+                                <Button Text="🤖" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar7"/>
+                                <Button Text="👽" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer1AvatarClicked" x:Name="P1Avatar8"/>
+                            </StackLayout>
+                        </ScrollView>
+                        
+                        <!-- Neon Player 1 Name Entry -->
+                        <Entry x:Name="Player1NameEntry" 
+                               Placeholder="Player 1"
+                               Style="{StaticResource NameEntryStyle}"
+                               Text="Player 1"
+                               Margin="0,12,0,0"/>
+                        
+                       
+                    </StackLayout>
+                </Frame>
+
+                <!-- Neon Player 2 Selection -->
+                <Frame x:Name="Player2Frame"
+                       Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,5,0,15">
+                    <StackLayout>
+                        <Label Text="👤 Player 2"
+                               TextColor="#FF4500"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,15" />
+                        
+                        <!-- Neon Player 2 Character Selection -->
+                        <ScrollView Orientation="Horizontal" HeightRequest="90">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Button Text="🤴" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar1"/>
+                                <Button Text="👸" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar2"/>
+                                <Button Text="🦸" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar3"/>
+                                <Button Text="🦹" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar4"/>
+                                <Button Text="🧙" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar5"/>
+                                <Button Text="🧚" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar6"/>
+                                <Button Text="🤖" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar7"/>
+                                <Button Text="👽" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnPlayer2AvatarClicked" x:Name="P2Avatar8"/>
+                            </StackLayout>
+                        </ScrollView>
+                        
+                        <!-- Neon Player 2 Name Entry -->
+                        <Entry x:Name="Player2NameEntry" 
+                               Placeholder="Player 2"
+                               Style="{StaticResource NameEntryStyle}"
+                               Text="Player 2"
+                               Margin="0,12,0,0"/>
+                        
+                        
+                    </StackLayout>
+                </Frame>
+
+                <!-- Neon Computer Character (for AI mode) -->
+                <Frame x:Name="ComputerFrame"
+                       Style="{StaticResource GlowFrameStyle}"
+                       Margin="0,5,0,15">
+                    <StackLayout>
+                        <Label Text="🤖 Computer "
+                               TextColor="#FF4500"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,15" />
+                        
+                        <ScrollView Orientation="Horizontal" HeightRequest="90">
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <Button Text="🤖" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnComputerAvatarClicked" x:Name="ComputerAvatar1"/>
+                                <Button Text="👾" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnComputerAvatarClicked" x:Name="ComputerAvatar2"/>
+                                <Button Text="🛸" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnComputerAvatarClicked" x:Name="ComputerAvatar3"/>
+                                <Button Text="⚡" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnComputerAvatarClicked" x:Name="ComputerAvatar4"/>
+                                <Button Text="🔥" Style="{StaticResource CharacterButtonStyle}" 
+                                        Clicked="OnComputerAvatarClicked" x:Name="ComputerAvatar5"/>
+                            </StackLayout>
+                        </ScrollView>
+                        
+                   
+                    </StackLayout>
+                </Frame>
+
+                <!-- Neon Action Buttons -->
+                <StackLayout Spacing="10" Margin="0,15,0,20">
+                    <Button Text=" Start Game" 
+                        Style="{StaticResource StartGameButtonStyle}"
+                        Clicked="OnStartGameClicked"
+                        x:Name="StartGameButton" />
+                
+                    <Button Text=" Back to Difficulty"
+                            Style="{StaticResource BackButtonStyle}"
+                            Clicked="OnBackClicked"
+                            x:Name="BackButton" />
+                </StackLayout>
+
+                
+                
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

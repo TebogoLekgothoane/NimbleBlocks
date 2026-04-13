@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Background Circle -->
+    <path
+        android:fillColor="#1a0a0a"
+        android:pathData="M54,54m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0" />
+    
+    <!-- Inner Circle -->
+    <path
+        android:fillColor="#000000"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+    
+    <!-- NB Text (simplified as rectangles) -->
+    <!-- Letter N -->
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M30,35 L35,35 L35,75 L30,75 Z" />
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M30,35 L50,55 L50,60 L30,40 Z" />
+    <path
+        android:fillColor="#FF4500"
+        android:pathData="M45,35 L50,35 L50,75 L45,75 Z" />
+    
+    <!-- Letter B -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M55,35 L60,35 L60,75 L55,75 Z" />
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M60,35 L75,35 L75,40 L60,40 Z" />
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M60,50 L75,50 L75,55 L60,55 Z" />
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M60,70 L75,70 L75,75 L60,75 Z" />
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M70,40 L70,70 L75,70 L75,40 Z" />
+    
+    <!-- Outer Glow -->
+    <path
+        android:fillColor="#FF4500"
+        android:fillAlpha="0.3"
+        android:pathData="M54,54m-52,0a52,52 0,1 1,104 0a52,52 0,1 1,-104 0" />
+</vector>

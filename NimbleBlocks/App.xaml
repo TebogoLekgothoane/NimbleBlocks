@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NimbleBlocks.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Global Neon Orange and Black Theme -->
+            
+            <!-- Neon Color Palette -->
+            <Color x:Key="NeonOrange">#FF4500</Color>
+            <Color x:Key="NeonOrangeLight">#FF6B35</Color>
+            <Color x:Key="NeonOrangeDark">#FF8C42</Color>
+            <Color x:Key="NeonBlack">#000000</Color>
+            <Color x:Key="NeonBlackLight">#1a0a0a</Color>
+            <Color x:Key="NeonBlackDark">#0a0a0a</Color>
+            
+            <!-- Global Neon Background Style -->
+            <Style x:Key="GlobalNeonBackground" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{StaticResource NeonBlack}" Offset="0.0"/>
+                            <GradientStop Color="{StaticResource NeonBlackLight}" Offset="0.3"/>
+                            <GradientStop Color="{StaticResource NeonBlack}" Offset="0.7"/>
+                            <GradientStop Color="{StaticResource NeonBlack}" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!-- Global Neon Button Style -->
+            <Style x:Key="GlobalNeonButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource NeonOrange}"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Margin" Value="20,10"/>
+            </Style>
+            
+            <!-- Global Neon Secondary Button Style -->
+            <Style x:Key="GlobalNeonSecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="{StaticResource NeonOrangeLight}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="Margin" Value="20,8"/>
+                <Setter Property="BorderColor" Value="{StaticResource NeonOrangeLight}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+            
+            <!-- Global Neon Label Style -->
+            <Style x:Key="GlobalNeonLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource NeonOrange}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            
+            <!-- Global Neon Frame Style -->
+            <Style x:Key="GlobalNeonFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource NeonBlackLight}"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="Margin" Value="0,10"/>
+            </Style>
+            
+            <!-- Global Neon Entry Style -->
+            <Style x:Key="GlobalNeonEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource NeonBlackLight}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource NeonOrangeLight}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="Margin" Value="20,5"/>
+            </Style>
+            
+            <!-- Global Neon Progress Bar Style -->
+            <Style x:Key="GlobalNeonProgressBar" TargetType="ProgressBar">
+                <Setter Property="ProgressColor" Value="{StaticResource NeonOrange}"/>
+                <Setter Property="BackgroundColor" Value="#333333"/>
+                <Setter Property="HeightRequest" Value="10"/>
+            </Style>
+            
+            <!-- Global Neon Slider Style -->
+            <Style x:Key="GlobalNeonSlider" TargetType="Slider">
+                <Setter Property="ThumbColor" Value="{StaticResource NeonOrange}"/>
+                <Setter Property="MinimumTrackColor" Value="{StaticResource NeonOrange}"/>
+                <Setter Property="MaximumTrackColor" Value="#333333"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

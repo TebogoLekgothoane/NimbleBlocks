@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NimbleBlocks.Resources"
+             x:Class="NimbleBlocks.Level"
+             Title="Choose Difficulty"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Night Sky Gradient Background -->
+            <Style x:Key="GradientBackground" TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#FF7800" Offset="0"/>
+                            <GradientStop Color="#000000" Offset="0.02"/>
+                            <GradientStop Color="#2D2B2B" Offset="0.98"/>
+                            <GradientStop Color="#FF7800" Offset="6"/>
+
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Star Animation Style -->
+            <Style x:Key="StarStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF8C42"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
+            <!-- Title Style -->
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF4500"/>
+                <Setter Property="FontSize" Value="32"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,20,0,10"/>
+            </Style>
+
+            <!-- Subtitle Style -->
+            <Style x:Key="SubtitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#FFFF"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,0,30"/>
+            </Style>
+
+            <!-- Easy Button Style -->
+            <Style x:Key="EasyButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#00FF00"/>
+                <Setter Property="BorderColor" Value="#00FF00"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Margin" Value="20,10"/>
+                <Setter Property="Padding" Value="20,10"/>
+            </Style>
+
+            <!-- Intermediate Button Style -->
+            <Style x:Key="IntermediateButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#FF8C00"/>
+                <Setter Property="BorderColor" Value="#FF8C00"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Margin" Value="20,10"/>
+                <Setter Property="Padding" Value="20,10"/>
+            </Style>
+
+            <!-- Difficult Button Style -->
+            <Style x:Key="DifficultButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#FF0000"/>
+                <Setter Property="BorderColor" Value="#FF0000"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="80"/>
+                <Setter Property="Margin" Value="20,10"/>
+                <Setter Property="Padding" Value="20,10"/>
+            </Style>
+
+            <!-- Back Button Style -->
+            <Style x:Key="BackButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="#FF5400"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="Margin" Value="20,20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Style="{StaticResource GradientBackground}">
+        <!-- Custom Transparent Header -->
+        <Frame BackgroundColor="Transparent" 
+               HasShadow="False" 
+               Padding="20,10" 
+               CornerRadius="0"
+               VerticalOptions="Start"
+               HorizontalOptions="Fill">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Back Button -->
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        BackgroundColor="Transparent" 
+                        TextColor="#FF4500" 
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Clicked="OnBackClicked"/>
+                
+                <!-- Empty space where title was -->
+                <Label Grid.Column="1" 
+                       Text="" 
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                
+                <!-- Empty space for symmetry -->
+                <Label Grid.Column="2" 
+                       Text="" 
+                       WidthRequest="40"/>
+            </Grid>
+        </Frame>
+        
+        <!-- Animated Stars Background -->
+        <Grid>
+            <!-- Star 1 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="Start" 
+                   Margin="50,80,0,0" x:Name="Star1"/>
+            <!-- Star 2 -->
+            <Label Text="⭐" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="Start" 
+                   Margin="0,120,60,0" x:Name="Star2"/>
+            <!-- Star 3 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Center" VerticalOptions="Start" 
+                   Margin="0,200,0,0" x:Name="Star3"/>
+            <!-- Star 4 -->
+            <Label Text="⭐" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="Center" 
+                   Margin="30,0,0,0" x:Name="Star4"/>
+            <!-- Star 5 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="Center" 
+                   Margin="0,0,40,0" x:Name="Star5"/>
+            <!-- Star 6 -->
+            <Label Text="⭐" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Start" VerticalOptions="End" 
+                   Margin="80,0,0,100" x:Name="Star6"/>
+            <!-- Star 7 -->
+            <Label Text="✨" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="End" VerticalOptions="End" 
+                   Margin="0,0,50,80" x:Name="Star7"/>
+            <!-- Star 8 -->
+            <Label Text="⭐" Style="{StaticResource StarStyle}" 
+                   HorizontalOptions="Center" VerticalOptions="End" 
+                   Margin="0,0,0,120" x:Name="Star8"/>
+        </Grid>
+
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10" VerticalOptions="Center">
+
+                <!-- Logo Section -->
+                <StackLayout HorizontalOptions="Center" Margin="0,0,0,20">
+                    <resources:Logo />
+                </StackLayout>
+
+                <!-- Header Section -->
+                <Frame BackgroundColor="#00000020" 
+                       CornerRadius="20" 
+                       Padding="20" 
+                       Margin="0,20,0,20"
+                       HasShadow="True">
+                    <StackLayout>
+                        <Label Text="🎯 Choose Difficulty"
+                               Style="{StaticResource TitleStyle}" />
+
+                        <Label Text="Select your time limit for the game"
+                               Style="{StaticResource SubtitleStyle}" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Difficulty Buttons -->
+                <StackLayout Spacing="10" Margin="0,20,0,20">
+
+                    <!-- Easy Difficulty -->
+                    <Frame BackgroundColor="#00000030" 
+                           CornerRadius="20" 
+                           Padding="0" 
+                           Margin="10,5"
+                           HasShadow="True">
+                        <Button Text="🟢 EASY 🟢"
+                                Style="{StaticResource EasyButtonStyle}"
+                                Clicked="OnEasyClicked"
+                                x:Name="EasyButton"
+                                Scale="0" />
+                    </Frame>
+
+                    <!-- Intermediate Difficulty -->
+                    <Frame BackgroundColor="#00000030" 
+                           CornerRadius="20" 
+                           Padding="0" 
+                           Margin="10,5"
+                           HasShadow="True">
+                        <Button Text="🟠 INTERMEDIATE 🟠"
+                                Style="{StaticResource IntermediateButtonStyle}"
+                                Clicked="OnIntermediateClicked"
+                                x:Name="IntermediateButton"
+                                Scale="0" />
+                    </Frame>
+
+                    <!-- Difficult Difficulty -->
+                    <Frame BackgroundColor="#00000030" 
+                           CornerRadius="20" 
+                           Padding="0" 
+                           Margin="10,5"
+                           HasShadow="True">
+                        <Button Text="🔴 DIFFICULT 🔴"
+                                Style="{StaticResource DifficultButtonStyle}"
+                                Clicked="OnDifficultClicked"
+                                x:Name="DifficultButton"
+                                Scale="0" />
+                    </Frame>
+
+                </StackLayout>
+
+                <!-- Back Button -->
+                <Button Text=" Back to Menu"
+                        Style="{StaticResource BackButtonStyle}"
+                        Clicked="OnBackClicked"
+                        x:Name="BackButton"
+                        Scale="0" />
+
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Game Mode Selection Modal Dialog -->
+        <Grid x:Name="GameModeModal"
+              IsVisible="False"
+              BackgroundColor="Transparent"
+              VerticalOptions="FillAndExpand" 
+              HorizontalOptions="FillAndExpand">
+            
+            <!-- Semi-transparent background overlay - tap to close -->
+            <BoxView BackgroundColor="#80000000" 
+                     VerticalOptions="FillAndExpand" 
+                     HorizontalOptions="FillAndExpand">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCloseGameModeModal"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            
+            <!-- Modal dialog content -->
+            <Frame BackgroundColor="#111010"
+                   BorderColor="#FF8C42"
+                   CornerRadius="25" 
+                   HasShadow="True" 
+                   Padding="30" 
+                   Margin="40" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   HeightRequest="400">
+                <StackLayout Spacing="20">
+                    <Label x:Name="GameModeTitleLabel" 
+                           Text="🎮Choose Game Mode🎮"
+                           TextColor="#FF4500"
+                           FontSize="24"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,10"/>
+
+                    <Label x:Name="GameModeDescriptionLabel" 
+                           Text="Easy\nTime Limit: 30s"
+                           TextColor="#FFFFFF"
+                           FontSize="16"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Computer vs Player button -->
+                    <Button x:Name="ComputerVsPlayerButton"
+                            Text="🤖 vs Computer"
+                            BackgroundColor="#FF4500"
+                            TextColor="White"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            Margin="0,0,0,10"
+                            Clicked="OnComputerVsPlayerClicked"/>
+
+                    <!-- Player vs Player button -->
+                    <Button x:Name="PlayerVsPlayerButton"
+                            Text="👥 vs Player"
+                            BackgroundColor="#FF4500"
+                            TextColor="White"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            Margin="0,0,0,10"
+                            Clicked="OnPlayerVsPlayerClicked"/>
+
+                    <!-- Cancel button -->
+                    <Button x:Name="CancelGameModeButton"
+                            Text="❌ Cancel"
+                            BackgroundColor="Transparent"
+                            TextColor="#FF8C42"
+                            FontSize="16"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            Clicked="OnCloseGameModeModal"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

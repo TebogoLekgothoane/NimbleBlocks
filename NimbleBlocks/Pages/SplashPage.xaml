@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:NimbleBlocks.Resources"
+             x:Class="NimbleBlocks.SplashPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <!-- Background Gradient -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#2D2B2B" Offset="0.01"/>
+                <GradientStop Color="#000000" Offset="0.02"/>
+                <GradientStop Color="#000000" Offset="0.02"/>
+                <GradientStop Color="#000000" Offset="0.02"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!-- Animated Stars Background -->
+        <Label x:Name="Star1" Text="." FontSize="22" TextColor="#FF4500" Opacity="0.6" 
+               HorizontalOptions="Start" VerticalOptions="Start" Margin="50,100,0,0"/>
+        <Label x:Name="Star2" Text="." FontSize="20" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="End" VerticalOptions="Start" Margin="0,80,60,0"/>
+        <Label x:Name="Star3" Text="." FontSize="18" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="Start" VerticalOptions="Center" Margin="30,0,0,0"/>
+        <Label x:Name="Star4" Text="." FontSize="24" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,40,0"/>
+        <Label x:Name="Star5" Text="." FontSize="21" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="Start" VerticalOptions="End" Margin="60,0,0,120"/>
+        <Label x:Name="Star6" Text="." FontSize="19" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="End" VerticalOptions="End" Margin="0,0,50,100"/>
+        <Label x:Name="Star7" Text="." FontSize="23" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="Center" VerticalOptions="Start" Margin="0,60,0,0"/>
+        <Label x:Name="Star8" Text="." FontSize="17" TextColor="#FF4500" Opacity="0.5" 
+               HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,80"/>
+
+        <!-- Main Content -->
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Spacing="30">
+
+            <!-- Logo -->
+            <resources:Logo x:Name="LogoView" 
+                            HorizontalOptions="Center" 
+                            WidthRequest="200"
+                            HeightRequest="100"
+                            VerticalOptions="Center"/>
+
+            <!-- App Name with Neon Glow -->
+            <StackLayout HorizontalOptions="Center" Spacing="5">
+                <Label Text="NIMBLE" 
+                       FontSize="36" 
+                       FontAttributes="Bold" 
+                       TextColor="#FF4500" 
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+                <Label Text="BLOCKS" 
+                       FontSize="36" 
+                       FontAttributes="Bold" 
+                       TextColor="#FF6B35" 
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <!-- Loading Indicator -->
+            <ActivityIndicator x:Name="LoadingIndicator" 
+                              Color="#FF4500" 
+                              IsRunning="True" 
+                              IsVisible="True"
+                              HorizontalOptions="Center"
+                              WidthRequest="40"
+                              HeightRequest="40"/>
+
+            <!-- Loading Text -->
+            <Label x:Name="LoadingLabel" 
+                   Text="Loading..." 
+                   FontSize="18" 
+                   TextColor="#FF8C42" 
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,0"/>
+
+            <!-- Loading Dots Animation -->
+            <StackLayout Orientation="Horizontal" 
+                        HorizontalOptions="Center" 
+                        Spacing="5"
+                        Margin="0,5,0,0">
+                <Label x:Name="Dot1" Text="●" 
+                       FontSize="16" 
+                       TextColor="#FF4500" 
+                       Opacity="0.3"/>
+                <Label x:Name="Dot2" Text="●" 
+                       FontSize="16" 
+                       TextColor="#FF6B35" 
+                       Opacity="0.3"/>
+                <Label x:Name="Dot3" Text="●" 
+                       FontSize="16" 
+                       TextColor="#FF8C42" 
+                       Opacity="0.3"/>
+            </StackLayout>
+
+        </StackLayout>
+
+        <!-- Version Info -->
+        <Label Text="v1.0.0" 
+               FontSize="12" 
+               TextColor="#FF6B35" 
+               HorizontalOptions="End" 
+               VerticalOptions="End" 
+               Margin="0,0,20,20"/>
+    </Grid>
+</ContentPage>
